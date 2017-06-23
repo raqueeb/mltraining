@@ -1,3 +1,19 @@
+#####################################
+#      Intro to ML Traning - R      #
+# Please come back for updated file #
+#####################################
+
+# Script 2 - Video 6
+
+# Set the working directory
+
+setwd("~/datasets/titanic")
+
+# Import the training set: train
+# Your working directory might vary
+
+train <- read.csv("~/datasets/titanic/train.csv")
+
 # If you want to access a single column in the dataframe use $ after the dataframe
 # If you want to know what is the fate of the people in the train dataset?
 
