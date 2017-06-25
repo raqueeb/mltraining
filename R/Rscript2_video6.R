@@ -17,7 +17,7 @@ train <- read.csv("~/datasets/titanic/train.csv")
 # Import the test set too -> test dataframe
 # Your working directory might vary
 
-train <- read.csv("~/datasets/titanic/test.csv")
+test <- read.csv("~/datasets/titanic/test.csv")
 
 # If you want to access a single column in the dataframe use $ after the dataframe
 # If you want to know what is the fate of the people in the train dataset?
