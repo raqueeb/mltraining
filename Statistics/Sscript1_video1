@@ -1,1 +1,57 @@
+##########################################
+# Intro to ML Traning - Statistics for R #
+# Please come back for updated file      #
+##########################################
 
+# Script 1 - Statistics Video 1
+
+# Set the working directory
+
+setwd("~/datasets/titanic")
+
+# Import the training set: train
+# Your working directory might vary
+
+# train <- read.csv("~/datasets/titanic/train.csv")
+# loading the CSV file, not as factors
+
+train <- read.csv("~/datasets/titanic/train.csv", stringsAsFactors = FALSE, header = T)
+
+# How about finding average(mean) Age?
+# Mean = Sum of all Observations / Number of Observations
+
+mean(train$Age)
+
+# [1] 32.20421
+
+# Measure of Central Tendency
+
+summary(train$Age)
+
+# That's not actual, using inbuild mode function 
+
+mode(train$Age)
+
+[1] "numeric"
+
+#using a simple method
+#creates a table of all age groups
+
+my_mode <- table(train$Age)    
+
+# view the output of my_mode
+# let's treat the age values here as names
+
+my_mode                        
+
+#find the most frequent value using max
+
+names(my_mode)[my_mode == max(my_mode)]
+
+# [1] "24"
+
+#find out the median
+
+median(train$Fare)
+
+# [1] 14.4542
