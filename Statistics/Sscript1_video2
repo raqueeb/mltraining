@@ -42,7 +42,7 @@ boxplot(train$Age ~ train$Pclass, xlab = "Class", ylab = "Age", col = c("red"))
 
 mode(train$Age)
 
-[1] "numeric"
+# [1] "numeric"
 
 #using a simple method
 #creates a table of all age groups
