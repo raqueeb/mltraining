@@ -1,9 +1,10 @@
 ##########################################
 # Intro to ML Traning - Statistics for R #
-# Please come back for updated file      #
+# Please come back here for updated file #
+#       helpline: +8801713095767         #
 ##########################################
 
-# Script 1 - Statistics Video 1
+# Script 1 - Statistics Video 2
 
 # Set the working directory
 
@@ -13,12 +14,17 @@ setwd("~/datasets/titanic")
 # Your working directory might vary
 
 # train <- read.csv("~/datasets/titanic/train.csv")
-# loading the CSV file, not as factors
+# loading the CSV file, not as factors, for better text manipulation + header
 
 train <- read.csv("~/datasets/titanic/train.csv", stringsAsFactors = FALSE, header = T)
 
+# Plotting all the values of Age and Fair, you can see the central tendency here
+
+plot(train$Age, train$Fare, xlab = 'Age', ylab = 'Fare')
+
 # How about finding average(mean) Age?
 # Mean = Sum of all Observations / Number of Observations
+# Missing 177 $Age value can be replaced by mean
 
 mean(train$Age)
 
@@ -27,6 +33,10 @@ mean(train$Age)
 # Measure of Central Tendency
 
 summary(train$Age)
+
+# Finding boxplot to have a look at outliers 
+
+boxplot(train$Age ~ train$Pclass, xlab = "Class", ylab = "Age", col = c("red"))
 
 # That's not actual, using inbuild mode function 
 
