@@ -27,6 +27,8 @@ Machine Learning Hands-On
  
 বিজ্ঞজনের ধারণা, মেশিন লার্নিং ব্যাপারটা লাগবে সবকিছুতে। আর তাই ব্যাপারটা নিয়ে শুরু করেছি একবছরের একটা কোর্স। নিজের সময়ে। ফ্রিমিয়াম মডেলে। বেটা টেস্টিং চলছে এখন। চেখে দেখতে পারেন কয়েকটা ভিডিও। এই অ্যালবামে। ইনপুট দরকার আপনাদের। পাশাপাশি ব্লগপোস্ট চলবে একই গতিতে। 
 
-https://www.facebook.com/media/set/?set=a.10154881990933772.1073741971.595343771&type=3
+https://www.facebook.com/mltraining/
+
+https://www.youtube.com/channel/UC4RrCd2anEWtZJr9_wX76kA
 
 #ml_rhassan
