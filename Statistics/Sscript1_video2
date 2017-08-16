@@ -36,6 +36,8 @@ hist(train$Age, main = "Age Distribution", xlab = "Age")
 
 plot(train$Age, train$Fare, xlab = 'Age', ylab = 'Fare')
 
+plot(Fare ~ Age, data = train)
+
 # How about finding average(mean) Age?
 # Mean = Sum of all Observations / Number of Observations
 # Missing 177 $Age value can be replaced by mean
