@@ -14,11 +14,25 @@ setwd("~/datasets/titanic")
 # Your working directory might vary
 
 # train <- read.csv("~/datasets/titanic/train.csv")
+
+# str(train)
+#  'data.frame':	891 obs. of  12 variables:
+#  $ Sex        : Factor w/ 2 levels "female","male": 2 1 1 1 2 2 2 2 1 1 ...
+#  $ Age        : num  22 38 26 35 35 NA 54 2 27 14 ...
+
 # loading the CSV file, not as factors, for better text manipulation + header
 
 train <- read.csv("~/datasets/titanic/train.csv", stringsAsFactors = FALSE, header = T)
 
+str(train)
+
+# 'data.frame':	891 obs. of  12 variables:
+#  $ Sex        : chr  "male" "female" "female" "female" ...
+#  $ Age        : num  22 38 26 35 35 NA 54 2 27 14 ...
+
 # Plotting all the values of Age and Fair, you can see the central tendency here
+
+hist(train$Age, main = "Age Distribution", xlab = "Age")
 
 plot(train$Age, train$Fare, xlab = 'Age', ylab = 'Fare')
 
