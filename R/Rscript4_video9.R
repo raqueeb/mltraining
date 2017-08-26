@@ -25,10 +25,14 @@ prop.table(table(train$Sex,train$Survived),margin=1) * 100
 
 # As per the training data 74% females survived as opposed to 19% men
 
+## Lets predict on test data;
+
+test<- read.csv("~/datasets/titanic/test.csv")
+
 ## We'll create a column child, and greater than 18 is adult
 
-train$Child <- 0
-train$Child[train$Age < 18] <- 1
+test$Child <- 0
+test$Child[train$Age < 18] <- 1
 
 # Two-way comparison between Child and Adult
 
@@ -41,17 +45,13 @@ prop.table(table(train$Child,train$Survived),1) * 100
 ##   54% adult survived
 ##   only 36% child survived, even then "woman and children first"
 
-## Lets predict on test data;
-
-test<- read.csv("~/datasets/titanic/test.csv")
-
 # Initialize the Survived column to 0
 
 test$Survived <- 0
 
 # Survived are set to 1 if Sex equals "female" and not Child
 
-test$Survived[test$Sex =="female" & test$Child== 0] <- 1
+test$Survived[test$Sex == "female" & test$Child == 0] <- 1
 
 # send the dataframe with two columns   
 
