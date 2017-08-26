@@ -25,10 +25,10 @@ prop.table(table(train$Sex,train$Survived),margin=1) * 100
 
 # As per the training data 74% females survived as opposed to 19% men
 
-Create the column child, and indicate whether child or no child
+## We'll create a column child, and greater than 18 is adult
 
-train$Child <-0
-train$Child[train$Age<18] <- 1
+train$Child <- 0
+train$Child[train$Age < 18] <- 1
 
 # Two-way comparison between Child and Adult
 
@@ -49,12 +49,7 @@ test<- read.csv("~/datasets/titanic/test.csv")
 
 test$Survived <- 0
 
-# Create the column child, and indicate whether child or no child
-
-test$Child <-0
-test$Child[test$Age < 18] <- 1
-
-# Survived are set to 1 if Sex equals "female" and Child == 0
+# Survived are set to 1 if Sex equals "female" and not Child
 
 test$Survived[test$Sex =="female" & test$Child== 0] <- 1
 
