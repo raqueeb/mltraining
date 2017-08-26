@@ -48,7 +48,7 @@ test<- read.csv("~/datasets/titanic/test.csv")
 ## test dataframe column will have child, greater than 18 is adult
 
 test$Child <- 0
-test$Child[train$Age < 18] <- 1
+test$Child[test$Age < 18] <- 1
 
 # Initialize the Survived column to 0
 
