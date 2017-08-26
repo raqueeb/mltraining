@@ -37,8 +37,8 @@ prop.table(table(train_data$Child,train_data$Survived),1)
 ##             0         1
 ##   0 0.6388175 0.3611825
 ##   1 0.4601770 0.5398230
-# 54% adult survived
-# only 38% child survived, even then "woman and children first"
+##   54% adult survived
+##   only 38% child survived, even then "woman and children first"
 
 ## Lets predict on test data;
 
@@ -58,6 +58,10 @@ summary(train$Age)
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 ##    0.42   20.12   28.00   29.70   38.00   80.00     177
 
+# Survived are set to 1 if Sex equals "female" and Child == 0
+
+test$Survived[test$Sex =="female" & test$Child== 0] <- 1
+
 # send the dataframe with two columns   
 
 submit <-data.frame(test$PassengerId,test$Survived)
@@ -70,4 +74,8 @@ names(submit) <- c("PassengerId","Survived")
 
 rownames(submit) <- NULL
 
+# Finally, time to submit it to Kaggle.com
+
 write.csv(submit, file = "female_no_child.csv")
+
+# Score 0.78469
