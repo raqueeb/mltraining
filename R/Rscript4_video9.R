@@ -15,12 +15,13 @@ setwd("~/datasets/titanic")
 
 train <- read.csv("~/datasets/titanic/train.csv")
 
-# As row-wise proportions
-prop.table(table(train$Sex,train$Survived),margin=1)
-##         
-##                  0         1
-##   female 0.2579618 0.7420382
-##   male   0.8110919 0.1889081
+# As row-wise proportions in percentages
+
+prop.table(table(train$Sex,train$Survived),margin=1) * 100
+         
+##          0         1
+##   female 25.79618 74.20382
+##   male   81.10919 18.89081
 
 # As per the training data 74% females survived as opposed to 19% men
 
@@ -31,14 +32,14 @@ train$Child[train$Age<18] <- 1
 
 # Two-way comparison between Child and Adult
 
-prop.table(table(train_data$Child,train_data$Survived),1)
+prop.table(table(train$Child,train$Survived),1) * 100
 
-##    
-##             0         1
-##   0 0.6388175 0.3611825
-##   1 0.4601770 0.5398230
+##     0         1
+##  0  63.88175 36.11825
+##  1  46.01770 53.98230
+
 ##   54% adult survived
-##   only 38% child survived, even then "woman and children first"
+##   only 36% child survived, even then "woman and children first"
 
 ## Lets predict on test data;
 
@@ -52,11 +53,6 @@ test$Survived <- 0
 
 test$Child <-0
 test$Child[test$Age < 18] <- 1
-
-summary(train$Age)
-
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-##    0.42   20.12   28.00   29.70   38.00   80.00     177
 
 # Survived are set to 1 if Sex equals "female" and Child == 0
 
@@ -76,6 +72,6 @@ rownames(submit) <- NULL
 
 # Finally, time to submit it to Kaggle.com
 
-write.csv(submit, file = "female_no_child.csv")
+write.csv(submit, file = "female_no_child.csv", row.names=FALSE)
 
 # Score 0.78469
