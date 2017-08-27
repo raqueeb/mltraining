@@ -8,16 +8,16 @@
 
 # Set the working directory
 
-setwd("~/datasets/titanic")
+setwd ("~/datasets/titanic")
 
 # Import the training set: train
 # Your working directory might vary
 
-train <- read.csv("~/datasets/titanic/train.csv")
+train <- read.csv ("~/datasets/titanic/train.csv")
 
 # As row-wise proportions in percentages
 
-prop.table(table(train$Sex,train$Survived),margin=1) * 100
+prop.table (table(train$Sex,train$Survived), margin=1) * 100
          
 ##          0         1
 ##   female 25.79618 74.20382
@@ -32,7 +32,7 @@ train$Child [train$Age < 18] <- 1
 
 # Two-way comparison between Child and Adult
 
-prop.table(table(train$Child,train$Survived), 1) * 100
+prop.table (table(train$Child,train$Survived), 1) * 100
 
 ##     0         1
 ##  0  63.88175 36.11825
@@ -43,7 +43,7 @@ prop.table(table(train$Child,train$Survived), 1) * 100
 
 ## Lets predict on test data;
 
-test<- read.csv("~/datasets/titanic/test.csv")
+test<- read.csv ("~/datasets/titanic/test.csv")
 
 ## test dataframe column will have child, greater than 18 is adult
 
