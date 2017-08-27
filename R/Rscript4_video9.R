@@ -28,7 +28,7 @@ prop.table(table(train$Sex,train$Survived),margin=1) * 100
 ## We'll create a column child, and greater than 18 is adult
 
 train$Child <- 0
-train$Child[train$Age < 18] <- 1
+train$Child [train$Age < 18] <- 1
 
 # Two-way comparison between Child and Adult
 
@@ -48,7 +48,7 @@ test<- read.csv("~/datasets/titanic/test.csv")
 ## test dataframe column will have child, greater than 18 is adult
 
 test$Child <- 0
-test$Child[test$Age < 18] <- 1
+test$Child [test$Age < 18] <- 1
 
 # Initialize the Survived column to 0
 
@@ -56,22 +56,23 @@ test$Survived <- 0
 
 # Survived are set to 1 if Sex equals "female" and not Child
 
-test$Survived[test$Sex == "female" & test$Child == 0] <- 1
+test$Survived [test$Sex == 'female' & test$Child == 0] <- 1
+## test$Survived [test$Sex == 'female' & test$Pclass == 3 & test$Fare >= 20] <-0
 
 # send the dataframe with two columns   
 
-submit <-data.frame(test$PassengerId,test$Survived)
+submit <- data.frame (test$PassengerId,test$Survived)
 
 # naming the columns
 
-names(submit) <- c("PassengerId","Survived")
+names (submit) <- c("PassengerId","Survived")
 
 # no rownames
 
-rownames(submit) <- NULL
+rownames (submit) <- NULL
 
 # Finally, time to submit it to Kaggle.com
 
-write.csv(submit, file = "female_no_child.csv", row.names=FALSE)
+write.csv (submit, file = "female_no_child.csv", row.names=FALSE)
 
 # Score 0.78469
