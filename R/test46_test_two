@@ -1,0 +1,53 @@
+train_data<- read.csv("~/datasets/titanic/train.csv")
+
+train_data$Child <-0
+train_data$Child[train_data$Age<18] <- 1
+
+test_data<- read.csv("~/datasets/titanic/test.csv")
+
+test_one <-test_data
+# Initialize a Survived column to 0
+test_one$Survived <- 0
+
+# Set Survived to 1 if Sex equals "female"
+test_one$Survived[test_one$Sex =="female"]<-1
+
+predict1<-data.frame(test_one$PassengerId,test_one$Survived)
+names(predict1)<-c("PassengerId","Survived")
+rownames(predict1)<-NULL
+write.csv(predict1,file = "~/datasets/titanic/predict1.csv",row.names=FALSE)
+
+test_two <-test_data
+# Initialize a Survived column to 0
+test_two$Survived <- 0
+
+# Create the column child, and indicate whether child or no child
+test_two$Child <-0
+test_two$Child[test_two$Age<18] <- 1
+
+summary(train_data$Age)
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+##    0.42   20.12   28.00   29.70   38.00   80.00     177
+summary(train_data$Sex)
+## female   male 
+##    314    577
+prop.table(table(train_data$Sex, train_data$Survived))
+##         
+##                   0          1
+##   female 0.09090909 0.26150393
+##   male   0.52525253 0.12233446
+prop.table(table(train_data$Sex, train_data$Survived),1)
+##         
+##                  0         1
+##   female 0.2579618 0.7420382
+##   male   0.8110919 0.1889081
+# Set Survived to 1 if Sex equals "female" and age==0
+test_two$Survived[test_two$Sex =="female" & test_two$Child== 0]<-1
+
+predict2<-data.frame(test_two$PassengerId,test_two$Survived)
+names(predict2)<-c("PassengerId","Survived")
+rownames(predict2)<-NULL
+write.csv(predict2,file = "~/datasets/titanic/predict2.csv",row.names=FALSE)
+
+#Score 0.78469
+#level : 1796
