@@ -56,8 +56,9 @@ test$Survived <- 0
 
 # Survived are set to 1 if Sex equals "female" and not Child
 
-test$Survived [test$Sex == 'female'] <- 1
-test$Survived [test$Child == 0] <- 1
+test$Survived [test$Sex == 'female' & test$Child == 0] <- 1
+# test$Survived [test$Sex == 'female'] <- 1
+# test$Survived [test$Child == 0] <- 1
 ## test$Survived [test$Sex == 'female' & test$Pclass == 3 & test$Fare >= 20] <-0
 
 # send the dataframe with two columns   
