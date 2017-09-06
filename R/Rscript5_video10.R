@@ -29,4 +29,4 @@ aggregate(Survived ~ Child + Sex, data=train, FUN=length)
 
 aggregate(Survived ~ Child + Sex, data=train, FUN=function(x) {sum(x)/length(x)}) 
 
-aggregate(Survived ~ Child + Sex, data=train, FUN=function(x) {sum(x)/length(x)}) * 100
+aggregate(Survived ~ Child + Sex, data=train, FUN=function(x) {sum(x)/length(x) * 100}
