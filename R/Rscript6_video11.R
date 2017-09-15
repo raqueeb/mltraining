@@ -4,7 +4,7 @@
 #       helpline: +8801713095767         #
 ##########################################
 
-# Script 5 - R Video 10
+# Script 6 - R Video 11
 
 # Set the working directory
 
