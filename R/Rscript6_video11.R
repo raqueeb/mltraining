@@ -29,7 +29,7 @@ train$Fare2[train$Fare < 30 & train$Fare >= 20] <- '20-30'
 train$Fare2[train$Fare < 20 & train$Fare >= 10] <- '10-20'
 train$Fare2[train$Fare < 10] <- '<10'
 
-aggregate(Survived ~ Fare2 + Pclass + Sex, data=train, FUN=function(x) {sum(x)/length(x)})
+aggregate(Survived ~ Fare2 + Pclass + Sex, data=train, FUN=function(x) {sum(x)/length(x) * 100})
 
 # Create new column in test set with our prediction that everyone dies
 
@@ -46,4 +46,4 @@ test$Survived[test$Sex == 'female' & test$Pclass == 3 & test$Fare >= 20] <- 0
 # Create submission dataframe and output to file
 
 submit <- data.frame(PassengerId = test$PassengerId, Survived = test$Survived)
-write.csv(submit, file = "genderclassmodel.csv", row.names = FALSE)
+write.csv(submit, file = "genderclassfare.csv", row.names = FALSE)
