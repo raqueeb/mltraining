@@ -10,10 +10,11 @@
 
 setwd ("~/datasets/titanic")
 
-# Import the training set: train
+# Import the training + test data sets
 # Your working directory might vary
 
 train <- read.csv ("~/datasets/titanic/train.csv")
+test <- read.csv ("~/datasets/titanic/test.csv")
 
 # Boxlots are best for looking into the relations between variables
 
