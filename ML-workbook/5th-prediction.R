@@ -5,13 +5,6 @@ setwd("~/datasets/titanic")
 train <- read.csv("~/datasets/titanic/train.csv")
 test <- read.csv("~/datasets/titanic/test.csv")
 
-# Install and load required packages for fancy decision tree plotting
-
-library(rpart)
-library(rattle)
-library(rpart.plot)
-library(RColorBrewer)
-
 # Can we see a name?
 train$Name[1]
 
@@ -35,12 +28,15 @@ strsplit(combined_set$Name[1], split='[,.]')[[1]][2]
 combined_set$Title <- strsplit(combined_set$Name, split='[,.]')[[1]][2]  # Won't work!
 combined_set$Title <- sapply(combined_set$Name, FUN=function(x) {strsplit(x, split='[,.]')[[1]][2]})
 combined_set$Title <- sub(' ', '', combined_set$Title)
+
 # Inspect new feature
-table(combined_setned_set$Title)
+table(combined_set$Title)
+
 # Combined_setne small title groups
 combined_set$Title[combined_set$Title %in% c('Mme', 'Mlle')] <- 'Mlle'
 combined_set$Title[combined_set$Title %in% c('Capt', 'Don', 'Major', 'Sir')] <- 'Sir'
 combined_set$Title[combined_set$Title %in% c('Dona', 'Lady', 'the Countess', 'Jonkheer')] <- 'Lady'
+
 # Convert to a factor
 combined_set$Title <- factor(combined_set$Title)
 
@@ -51,12 +47,15 @@ combined_set$FamilySize <- combined_set$SibSp + combined_set$Parch + 1
 combined_set$Surname <- sapply(combined_set$Name, FUN=function(x) {strsplit(x, split='[,.]')[[1]][1]})
 combined_set$FamilyID <- paste(as.character(combined_set$FamilySize), combined_set$Surname, sep="")
 combined_set$FamilyID[combined_set$FamilySize <= 2] <- 'Small'
+
 # Inspect new feature
 table(combined_set$FamilyID)
+
 # Delete erroneous family IDs
 famIDs <- data.frame(table(combined_set$FamilyID))
 famIDs <- famIDs[famIDs$Freq <= 2,]
 combined_set$FamilyID[combined_set$FamilyID %in% famIDs$Var1] <- 'Small'
+
 # Convert to a factor
 combined_set$FamilyID <- factor(combined_set$FamilyID)
 
@@ -67,6 +66,13 @@ test <- combined_set[892:1309,]
 # Build a new tree with our new features
 fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked + Title + FamilySize + FamilyID,
              data=train, method="class")
+
+# Install and load required packages for fancy decision tree plotting
+
+library(rpart)
+library(rattle)
+library(rpart.plot)
+library(RColorBrewer)
              
 fancyRpartPlot(fit)
 
