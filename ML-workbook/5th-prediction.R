@@ -69,6 +69,7 @@ fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked + T
 
 # Install and load required packages for fancy decision tree plotting
 
+install.packages('rpart')
 install.packages('rpart.plot')
 library(rpart)
 library(rattle)
