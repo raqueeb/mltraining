@@ -11,7 +11,17 @@ train$Name[1]
 # We need to add test and train sets for feature engineering
 
 test$Survived <- NA
-combined_set <- rbind(train, test)
+combinecombined_sett <- rbind(train, test)
+
+# Creating new variable Child and Adult
+
+combined_set$Child[full$Age < 18] <- 'Child'
+combined_set$Child[full$Age >= 18] <- 'Adult'
+
+# Show counts
+table(combined_set$Child, combined_set$Survived)
+
+
 
 # Convert to a string
 combined_set$Name <- as.character(combined_set$Name)
@@ -39,6 +49,14 @@ combined_set$Title[combined_set$Title %in% c('Dona', 'Lady', 'the Countess', 'Jo
 
 # Convert to a factor
 combined_set$Title <- factor(combined_set$Title)
+
+# Adding Mother variable
+
+combined_set$Mother <- 'Not Mother'
+combined_set$Mother[combined_set$Sex == 'female' & combined_set$Parch > 0 & combined_set$Age > 18 & combined_set$Title != 'Miss'] <- 'Mother'
+
+# Show counts
+table(full$Mother, full$Survived)
 
 # Engineered variable: Family size
 combined_set$FamilySize <- combined_set$SibSp + combined_set$Parch + 1
