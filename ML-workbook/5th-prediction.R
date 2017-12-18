@@ -15,12 +15,11 @@ combinecombined_sett <- rbind(train, test)
 
 # Creating new variable Child and Adult
 
-combined_set$Child[full$Age < 18] <- 'Child'
-combined_set$Child[full$Age >= 18] <- 'Adult'
+combined_set$Child[combined_set$Age < 18] <- 'Child'
+combined_set$Child[combined_set$Age >= 18] <- 'Adult'
 
 # Show counts
 table(combined_set$Child, combined_set$Survived)
-
 
 
 # Convert to a string
@@ -56,7 +55,7 @@ combined_set$Mother <- 'Not Mother'
 combined_set$Mother[combined_set$Sex == 'female' & combined_set$Parch > 0 & combined_set$Age > 18 & combined_set$Title != 'Miss'] <- 'Mother'
 
 # Show counts
-table(full$Mother, full$Survived)
+table(combined_set$Mother, combined_set$Survived)
 
 # Engineered variable: Family size
 combined_set$FamilySize <- combined_set$SibSp + combined_set$Parch + 1
@@ -64,15 +63,19 @@ combined_set$FamilySize <- combined_set$SibSp + combined_set$Parch + 1
 # Engineered variable: Family
 combined_set$Surname <- sapply(combined_set$Name, FUN=function(x) {strsplit(x, split='[,.]')[[1]][1]})
 combined_set$FamilyID <- paste(as.character(combined_set$FamilySize), combined_set$Surname, sep="")
-combined_set$FamilyID[combined_set$FamilySize <= 2] <- 'Small'
+
+combined_set$FamilyID[combined_set$FamilySize == 1] <- 'single'
+combined_set$FamilyID[combined_set$FamilySize < 5 & combined_set$FamilySize > 1] <- 'Small'
+combined_set$FamilyID[combined_set$FamilySize > 4] <- 'large'
+
 
 # Inspect new feature
 table(combined_set$FamilyID)
 
 # Delete erroneous family IDs
-famIDs <- data.frame(table(combined_set$FamilyID))
-famIDs <- famIDs[famIDs$Freq <= 2,]
-combined_set$FamilyID[combined_set$FamilyID %in% famIDs$Var1] <- 'Small'
+# famIDs <- data.frame(table(combined_set$FamilyID))
+# famIDs <- famIDs[famIDs$Freq <= 2,]
+# combined_set$FamilyID[combined_set$FamilyID %in% famIDs$Var1] <- 'Small'
 
 # Convert to a factor
 combined_set$FamilyID <- factor(combined_set$FamilyID)
@@ -82,18 +85,18 @@ train <- combined_set[1:891,]
 test <- combined_set[892:1309,]
 
 # Build a new tree with our new features
-fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked + Title + FamilySize + FamilyID,
+fit <- rpart(Survived ~ Pclass + Sex + Age + Mother + SibSp + Parch + Fare + Embarked + Title + FamilySize + FamilyID,
              data=train, method="class")
 
 # Install and load required packages for fancy decision tree plotting
 
-install.packages('rpart')
-install.packages('rpart.plot')
+# install.packages('rpart')
+# install.packages('rpart.plot')
 library(rpart)
 library(rattle)
 library(rpart.plot)
 library(RColorBrewer)
-             
+
 fancyRpartPlot(fit)
 
 # Now let's make a prediction and write a submission file
