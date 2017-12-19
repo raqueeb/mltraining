@@ -11,12 +11,12 @@ train$Name[1]
 # We need to add test and train sets for feature engineering
 
 test$Survived <- NA
-combinecombined_sett <- rbind(train, test)
+combined_set <- rbind(train, test)
 
 # Creating new variable Child and Adult
 
-combined_set$Child[combined_set$Age < 18] <- 'Child'
-combined_set$Child[combined_set$Age >= 18] <- 'Adult'
+combined_set$Child[combined_set$Age < 14] <- 'Child'
+combined_set$Child[combined_set$Age >= 14] <- 'Adult'
 
 # Show counts
 table(combined_set$Child, combined_set$Survived)
