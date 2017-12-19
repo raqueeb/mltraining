@@ -21,6 +21,11 @@ combined_set$Child[combined_set$Age >= 18] <- 'Adult'
 # Show counts
 table(combined_set$Child, combined_set$Survived)
 
+# Cabin
+
+combined_set$Cabin <- as.character(combined_set$Cabin)
+strsplit(combined_set$Cabin[2], NULL)[[1]]
+combined_set$Deck<-factor(sapply(combined_set$Cabin, function(x) strsplit(x, NULL)[[1]][1])) 
 
 # Convert to a string
 combined_set$Name <- as.character(combined_set$Name)
@@ -72,30 +77,25 @@ combined_set$FamilyID[combined_set$FamilySize > 4] <- 'large'
 # Inspect new feature
 table(combined_set$FamilyID)
 
-# Delete erroneous family IDs
-# famIDs <- data.frame(table(combined_set$FamilyID))
-# famIDs <- famIDs[famIDs$Freq <= 2,]
-# combined_set$FamilyID[combined_set$FamilyID %in% famIDs$Var1] <- 'Small'
-
 # Convert to a factor
 combined_set$FamilyID <- factor(combined_set$FamilyID)
 
 # Split back into test and train sets
 train <- combined_set[1:891,]
 test <- combined_set[892:1309,]
-
-# Build a new tree with our new features
-fit <- rpart(Survived ~ Pclass + Sex + Age + Mother + SibSp + Parch + Fare + Embarked + Title + FamilySize + FamilyID,
-             data=train, method="class")
-
+                                
 # Install and load required packages for fancy decision tree plotting
 
-# install.packages('rpart')
-# install.packages('rpart.plot')
+install.packages('rpart')
+install.packages('rpart.plot')
 library(rpart)
 library(rattle)
 library(rpart.plot)
 library(RColorBrewer)
+
+# Build a new tree with our new features
+fit <- rpart(Survived ~ Pclass + Sex + Age + Mother + SibSp + Parch + Deck + Fare + Embarked + Title + FamilySize + FamilyID,
+             data=train, method="class")
 
 fancyRpartPlot(fit)
 
