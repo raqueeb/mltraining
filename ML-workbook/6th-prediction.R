@@ -37,6 +37,11 @@ combined_set$Child[combined_set$Age < 14] <- 'Child'
 combined_set$Child[combined_set$Age >= 14] <- 'Adult'
 combined_set$Child <- factor(combined_set$Child)
 
+# Cabin
+
+combined_set$Cabin <- as.character(combined_set$Cabin)
+strsplit(combined_set$Cabin[2], NULL)[[1]]
+combined_set$Deck<-factor(sapply(combined_set$Cabin, function(x) strsplit(x, NULL)[[1]][1])) 
 
 # Engineered variable: Family size
 combined_set$FamilySize <- combined_set$SibSp + combined_set$Parch + 1
@@ -71,8 +76,6 @@ FillAge <- rpart(Age ~ Pclass + Mother + FamilySize + Sex + SibSp + Parch + Deck
 combined_set$Age[is.na(combined_set$Age)] <- predict(FillAge, combined_set[is.na(combined_set$Age),])
 summary(combined_set)
 
-# Check what else might be missing
-summary(combined_set)
 # Fill in Embarked blanks
 summary(combined_set$Embarked)
 which(combined_set$Embarked == '')
@@ -90,6 +93,21 @@ combined_set$FamilyID2 <- as.character(combined_set$FamilyID2)
 combined_set$FamilyID2[combined_set$FamilySize <= 3] <- 'Small'
 # And convert back to factor
 combined_set$FamilyID2 <- factor(combined_set$FamilyID2)
+
+#once again for both the variable
+# Mother
+combined_set$Mother <- 'Not Mother'
+combined_set$Mother[combined_set$Sex == 'female' & combined_set$Parch > 0 & combined_set$Age > 18] <- 'Mother'
+combined_set$Mother <- factor(combined_set$Mother)
+
+# Child
+
+combined_set$Child[combined_set$Age < 14] <- 'Child'
+combined_set$Child[combined_set$Age >= 14] <- 'Adult'
+combined_set$Child <- factor(combined_set$Child)
+
+# Check what else might be missing
+summary(combined_set)
 
 # Split back into test and train sets
 train <- combined_set[1:891,]
