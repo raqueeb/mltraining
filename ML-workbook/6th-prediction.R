@@ -26,6 +26,18 @@ combined_set$Title[combined_set$Title %in% c('Dona', 'Lady', 'the Countess', 'Jo
 # Convert to a factor
 combined_set$Title <- factor(combined_set$Title)
 
+# Mother
+combined_set$Mother <- 'Not Mother'
+combined_set$Mother[combined_set$Sex == 'female' & combined_set$Parch > 0 & combined_set$Age > 18] <- 'Mother'
+combined_set$Mother <- factor(combined_set$Mother)
+
+# Child
+
+combined_set$Child[combined_set$Age < 14] <- 'Child'
+combined_set$Child[combined_set$Age >= 14] <- 'Adult'
+combined_set$Child <- factor(combined_set$Child)
+
+
 # Engineered variable: Family size
 combined_set$FamilySize <- combined_set$SibSp + combined_set$Parch + 1
 
@@ -33,15 +45,15 @@ combined_set$FamilySize <- combined_set$SibSp + combined_set$Parch + 1
 combined_set$Surname <- sapply(combined_set$Name, FUN=function(x) {strsplit(x, split='[,.]')[[1]][1]})
 combined_set$FamilyID <- paste(as.character(combined_set$FamilySize), combined_set$Surname, sep="")
 
-combined_set$FamilyID[combi$FamilySize <= 2] <- 'Small'
+combined_set$FamilyID[combined_set$FamilySize <= 2] <- 'Small'
 # Inspect new feature
-table(combi$FamilyID)
+table(combined_set$FamilyID)
 # Removing all erroneous family IDs
 famIDs <- data.frame(table(combined_set$FamilyID))
 famIDs <- famIDs[famIDs$Freq <= 2,]
 combined_set$FamilyID[combined_set$FamilyID %in% famIDs$Var1] <- 'Small'
 # Convert to a factor
-combi$FamilyID <- factor(combi$FamilyID)
+combined_set$FamilyID <- factor(combined_set$FamilyID)
 
 combined_set$FamilySizeGroup[combined_set$FamilySize == 1] <- 'single'
 combined_set$FamilySizeGroup[combined_set$FamilySize < 5 & combined_set$FamilySize > 1] <- 'Smaller'
