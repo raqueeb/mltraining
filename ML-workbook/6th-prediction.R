@@ -46,9 +46,12 @@ combined_set$FamilyID <- factor(combined_set$FamilyID)
 
 # Fill in Age NAs
 summary(combined_set$Age)
-Agefit <- rpart(Age ~ Pclass + Sex + SibSp + Parch + Fare + Embarked + Title + FamilySize, 
+
+FillAge <- rpart(Age ~ Pclass + Mother + FamilySize + Sex + SibSp + Parch + Deck + Fare + Embarked + Title + FamilyID + FamilySize, 
                 data=combined_set[!is.na(combined_set$Age),], method="anova")
-combined_set$Age[is.na(combined_set$Age)] <- predict(Agefit, combined_set[is.na(combined_set$Age),])
+combined_set$Age[is.na(combined_set$Age)] <- predict(FillAge, combined_set[is.na(combined_set$Age),])
+summary(combined_set)
+
 # Check what else might be missing
 summary(combined_set)
 # Fill in Embarked blanks
