@@ -21,11 +21,17 @@ combined_set$Child[combined_set$Age >= 14] <- 'Adult'
 # Show counts
 table(combined_set$Child, combined_set$Survived)
 
+# Convert to a factor
+combined_set$Child <- factor(combined_set$Child)
+
 # Cabin
 
 combined_set$Cabin <- as.character(combined_set$Cabin)
 strsplit(combined_set$Cabin[2], NULL)[[1]]
 combined_set$Deck<-factor(sapply(combined_set$Cabin, function(x) strsplit(x, NULL)[[1]][1])) 
+                                 
+# Convert to a factor
+combined_set$Cabin <- factor(combined_set$Cabin)
 
 # Convert to a string
 combined_set$Name <- as.character(combined_set$Name)
@@ -62,6 +68,9 @@ combined_set$Mother[combined_set$Sex == 'female' & combined_set$Parch > 0 & comb
 # Show counts
 table(combined_set$Mother, combined_set$Survived)
 
+# Convert to a factor
+combined_set$Mother <- factor(combined_set$Mother)
+                                 
 # Engineered variable: Family size
 combined_set$FamilySize <- combined_set$SibSp + combined_set$Parch + 1
 
