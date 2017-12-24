@@ -119,7 +119,7 @@ library(randomForest)
 set.seed(291)
 
 rftrain01 <- combined_set[1:891, c("Pclass", "Title")]
-rflabel <- as.factor(train$survived)
+rflabel <- as.factor(train$Survived)
 
 
 fit1 <- randomForest(x = rftrain01, y = rflabel, importance = TRUE, ntree = 1000)
