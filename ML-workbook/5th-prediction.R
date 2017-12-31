@@ -82,6 +82,9 @@ combined_set$FamilyID[combined_set$FamilySize == 1] <- 'single'
 combined_set$FamilyID[combined_set$FamilySize < 5 & combined_set$FamilySize > 1] <- 'Small'
 combined_set$FamilyID[combined_set$FamilySize > 4] <- 'large'
 
+                                 # a new plot
+                                 mosaicplot(table(combined_set$FamilySizeGroup, combined_set$Survived), main='Survival affected by Family Size ', shade=TRUE)
+                                 
 
 # Inspect new feature
 table(combined_set$FamilyID)
