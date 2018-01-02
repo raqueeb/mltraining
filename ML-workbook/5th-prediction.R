@@ -33,6 +33,16 @@ combined_set$Deck<-factor(sapply(combined_set$Cabin, function(x) strsplit(x, NUL
 # Convert to a factor
 combined_set$Cabin <- factor(combined_set$Cabin)
 
+# fare_type
+                                 
+combined_set$Fare_type[combined_set$Fare<50]<-"low"
+combined_set$Fare_type[combined_set$Fare>50 & combined_set$Fare<=100]<-"med1"
+combined_set$Fare_type[combined_set$Fare>100 & combined_set$Fare<=150]<-"med2"
+combined_set$Fare_type[combined_set$Fare>150 & combined_set$Fare<=500]<-"high"
+combined_set$Fare_type[combined_set$Fare>500]<-"vhigh"
+
+aggregate(Survived~Fare_type, data=combined_set,mean) 
+
 # Convert to a string
 combined_set$Name <- as.character(combined_set$Name)
 
