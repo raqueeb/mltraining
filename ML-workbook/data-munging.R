@@ -46,4 +46,5 @@ barplot(table(train$Embarked),
 
 # barplot(table(train$Embarked), names.arg = c("Cherbourg", "Queenstown", "Southampton"), main="Embarked (port of embarkation)", col="sienna")
 
-# barplot(table(train$Embarked), names= c("Missing", "Cherbourg", "Queenstown", "Southampton"), main="Port of Embarkation")
+# Where most people Embarked?
+barplot(table(train$Embarked), names= c("Missing", "Cherbourg", "Queenstown", "Southampton"), main="Port of Embarkation")
