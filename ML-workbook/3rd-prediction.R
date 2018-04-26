@@ -7,6 +7,11 @@ setwd ("~/datasets/titanic")
 
 train <- read.csv ("~/datasets/titanic/train.csv")
 
+# Import the test set too -> test dataframe
+# Your working directory might vary
+
+test <- read.csv("~/datasets/titanic/test.csv")
+
 # Need to create subsets of Fare
 
 train$Fare2 <- '30+'
