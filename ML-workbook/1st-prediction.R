@@ -20,11 +20,11 @@ train
 
 # viewing the "train" dataframe in table format
 
-view(train)
+View(train)
 
 # Import the testing set: test
 
-test <- read_csv("~/datasets/titanic/test.csv")
+test <- read.csv("~/datasets/titanic/test.csv")
 
 # Print test dataframe to the console
 
@@ -32,7 +32,7 @@ test
 
 # view the test dataframe
 
-view(test)
+View(test)
 
 # Let's do some exploratory data analysis
 # How many people in your training set survived?
