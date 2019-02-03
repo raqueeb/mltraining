@@ -20,4 +20,8 @@ train
 
 # viewing the "train" dataframe in table format
 
+View(train)
+
+# dataframe structure
+
 str(train)
