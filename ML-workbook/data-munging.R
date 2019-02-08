@@ -1,16 +1,39 @@
 # Set working directory and import datafiles
 # Your working directory might vary
+# Please message facebook.com/raqueeb for help
 
 setwd("~/datasets/titanic")
 train <- read.csv("~/datasets/titanic/train.csv")
 
 # install.packages("Amelia")
 install.packages("Amelia")
+# install.packages("naniar")
+
+# library(naniar)
+
+# missmap function considers “NA” values as missing values but it does not 
+# consider empty values as missing values.
+
+train[train==""]<-NA
+# missing.types <- c("", "NA")
 
 # Need to see the missing data
 library(Amelia)
 missmap(train, main="Titanic Training Data - Missings Map", 
         col=c("yellow", "black"), legend=FALSE)
+
+# require(Amelia)
+# missmap(train, main="Titanic Training Data - Missings Map", 
+        col=c("yellow", "black"), legend=FALSE)
+
+# library(naniar)
+
+# vis_miss(train)
+
+# str(train)
+
+# train[train==""]<-NA
+# missing.types <- c("", "NA")
 
 # barplot for all the variables 
 
