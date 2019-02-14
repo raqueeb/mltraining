@@ -37,6 +37,10 @@ prop.table(table(train$Sex, train$Survived))
 # female 0.09090909 0.26150393
 # male   0.52525253 0.12233446
 
+prop.table(table(train$Sex, train$Survived),1)
+
+prop.table(table(train$Sex, train$Survived),1) * 100
+
 # Visual representation of passengers in train dataset
 
 barplot(table(train$Sex), xlab="Passenger", ylab="People", main="Train Data Passenger")
