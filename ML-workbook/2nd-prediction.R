@@ -65,5 +65,5 @@ test$Survived[test$Sex == 'female'] <- 1
 # We need to submit a csv file with the PassengerId and Survived predictions to Kaggle
 # write.csv fuction writes the prediction dataframe out to a CSV file, excluding the row numbers
 
-prediction <- data.frame(PassengerId = test$PassengerId, Survived = test$Survived)
-write.csv(prediction, file = "maledies.csv", row.names = FALSE)
+prediction2 <- data.frame(PassengerId = test$PassengerId, Survived = test$Survived)
+write.csv(prediction2, file = "2ndprediction.csv", row.names = FALSE)
