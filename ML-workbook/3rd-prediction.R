@@ -19,6 +19,20 @@ train$Fare2[train$Fare < 30 & train$Fare >= 20] <- '20-30'
 train$Fare2[train$Fare < 20 & train$Fare >= 10] <- '10-20'
 train$Fare2[train$Fare < 10] <- '<10'
 
+# some tests, do as you feel like
+
+table(train$Sex, train$Survived)
+
+summary(train$Sex)
+
+aggregate(Survived ~ Sex, data=train, FUN=sum)
+
+aggregate(Survived ~ Sex, data=train, FUN=length)
+
+aggregate(Survived ~ Sex, data=train, FUN=function(x) {sum(x)/length(x)})
+
+# back to 3rd prediction
+
 # Comparing more than two subsets, we need to use command "aggregate"
 
 aggregate(Survived ~ Fare2 + Pclass + Sex, data=train, FUN=sum)
