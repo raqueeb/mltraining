@@ -5,6 +5,15 @@ setwd("~/datasets/titanic")
 train <- read.csv("~/datasets/titanic/train.csv")
 test <- read.csv("~/datasets/titanic/test.csv")
 
+# a small test, we do not try bigger things for now
+
+library(rpart)
+# model <- rpart(Survived ~ Sex, data=train, method="class")
+model <- rpart(Survived ~ Pclass + Age, data=train, method="class")
+par(xpd = NA) # otherwise on some devices the text is clipped
+plot(model)
+text(model, digits = 3)
+
 # Install and load required packages for fancy decision tree plotting
 
 install.packages('rattle')
