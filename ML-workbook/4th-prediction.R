@@ -16,9 +16,9 @@ text(model, digits = 3)
 
 # Install and load required packages for fancy decision tree plotting
 
-install.packages('rattle')
-install.packages('rpart.plot')
-install.packages('RColorBrewer')
+# install.packages('rattle')
+# install.packages('rpart.plot')
+# install.packages('RColorBrewer')
 library(rpart)
 library(rattle)
 library(rpart.plot)
@@ -33,7 +33,12 @@ mytree2 <- rpart(Survived ~ Pclass + Age, data=train, method="class")
 fancyRpartPlot(mytree2)
 
 # Build a deeper tree
-mytree3 <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data=train, method="class")
+mytree3 <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + 
+                   Fare + Embarked, data=train, method="class")
+
+# what if, we take all the variable? Not a good idea
+mytree4 <- rpart(Survived ~ ., data=train, method="class")
+
 # Plot it with base-R
 plot(mytree3)
 text(mytree3)
