@@ -14,5 +14,5 @@ model <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch +
                    Fare + Embarked, data=train, method="class")
                    
 # Now let's make a prediction and write a submission file
-prediction <- predict(model, test)
-predict <- data.frame(PassengerId = test$PassengerId, Name= test$Name, SurviNameved = pName, 
+my_predict <- predict(model, test, type = "class")
+my_predict_df <- data.frame(PassengerId = test$PassengerId, Name= test$Name, Survived = prediction) 
