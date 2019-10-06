@@ -1,8 +1,11 @@
 # Set working directory and import datafiles
 
 setwd("~/datasets/titanic")
-train <- read.csv("~/datasets/titanic/train.csv")
-test <- read.csv("~/datasets/titanic/test.csv")
+
+train <- read.csv('https://raw.githubusercontent.com/raqueeb/mltraining/master/ML-workbook/train.csv')
+# train <- read.csv("~/datasets/titanic/train.csv")
+# test <- read.csv("~/datasets/titanic/test.csv")
+test <- read.csv('https://raw.githubusercontent.com/raqueeb/mltraining/master/ML-workbook/test.csv')
 
 # library load, "rpart" is the decision tree 
 # (rpart: Recursive Partitioning and Regression Trees)
