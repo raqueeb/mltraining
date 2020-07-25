@@ -173,3 +173,5 @@ anyNA(train$Fair_type)
 fit
 
 varImpPlot(fit)
+
+# you can try this, I loved this - https://rpubs.com/Cornelius_Tanui/571632
