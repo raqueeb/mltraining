@@ -145,6 +145,6 @@ fit2 <- cforest(as.factor(Survived) ~ Pclass + Sex + Age + SibSp + Parch + Fare 
 
 
 # Now let's make a prediction and write a submission file
-MyPredict <- predict(fit2, test, OOB=TRUE, type = "response")
+MyPredict <- predict(object = fit2, newdata = test, OOB=TRUE, type = "response")
 predict7th <- data.frame(PassengerId = test$PassengerId, Survived = MyPredict)
 write.csv(predict7th, file = "tree2.csv", row.names = FALSE)
