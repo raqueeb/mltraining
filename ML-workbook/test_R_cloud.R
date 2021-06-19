@@ -1,16 +1,21 @@
-# Import datafiles
+# দুটো ভ্যারিয়েবল অর্থাৎ ডেটাফ্রেম তৈরি করি, টেস্ট এবং ট্রেনিং 
 
 train <- read.csv('https://raw.githubusercontent.com/raqueeb/mltraining/master/ML-workbook/train.csv')
 test <- read.csv('https://raw.githubusercontent.com/raqueeb/mltraining/master/ML-workbook/test.csv')
 
-# library load, "rpart" is the decision tree 
+# ডিসিশন ট্রি লাইব্রেরি, "rpart" চালু করে নেই 
 # (rpart: Recursive Partitioning and Regression Trees)
+
 library(rpart)
 
-# predicting our classifcation model to "model" object
+# ক্লাসিফিকেশন মডেল প্রেডিকশন, মডেল অবজেক্টে পাঠিয়ে
+
 model <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + 
                    Fare + Embarked, data=train, method="class")
                    
-# Now let's make a prediction and dump it to a dataframe
+# প্রেডিকশন তৈরি, মডেল, টেস্ট ডেটাফ্রেম, বাইনারি ক্লাসিফিকেশন   
+
 my_predict <- predict(model, test, type = "class")
+
+# ডেটাফ্রেম তৈরি, আইডি, নাম, এবং উনি বেঁচে গিয়েছিলেন কিনা জানতে
 my_predict_df <- data.frame(PassengerId = test$PassengerId, Name= test$Name, Survived = my_predict) 
