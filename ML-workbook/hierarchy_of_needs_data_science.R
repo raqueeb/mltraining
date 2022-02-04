@@ -1,14 +1,40 @@
+## ১. ডাটা কালেকশন
+
 # দুটো ভ্যারিয়েবল অর্থাৎ ডেটাফ্রেম তৈরি করি, টেস্ট এবং ট্রেনিং 
 
 train <- read.csv('https://raw.githubusercontent.com/raqueeb/mltraining/master/ML-workbook/train.csv')
 test <- read.csv('https://raw.githubusercontent.com/raqueeb/mltraining/master/ML-workbook/test.csv')
+
+# ২. ডাটা স্টোর/ইনফ্রাস্ট্রাকচার - চেক করি
+
+train
+
+## ৩. ডাটা এনালাইসিস, ডাটা এক্সপ্লোরেশন
+
+# How many survived?
+barplot(table(train$Survived),
+        names.arg = c("Perished", "Survived"),
+        main="Survived (passenger fate)", col="black")
+
+# Passengers travelling in different classes
+barplot(table(train$Pclass), 
+        names.arg = c("first", "second", "third"),
+        main="Pclass (passenger traveling class)", col="firebrick")
+
+# How many survived gender-wise?
+barplot(table(train$Sex), main="Sex (gender)", col="darkviolet")
+
+# Age distribution in the Titanic
+hist(train$Age, main="Age", xlab = NULL, col="brown")
+
+## ৪. ডাটা সাইন্স / মেশিন লার্নিং / মডেল তৈরি
 
 # ডিসিশন ট্রি লাইব্রেরি, "rpart" চালু করে নেই 
 # (rpart: Recursive Partitioning and Regression Trees)
 
 library(rpart)
 
-# ক্লাসিফিকেশন মডেল প্রেডিকশন, মডেল অবজেক্টে পাঠিয়ে
+# ৫. এ-আই: ক্লাসিফিকেশন মডেল প্রেডিকশন, মডেল অবজেক্টে পাঠিয়ে
 
 # model <- rpart(survived ~ ., data = train, method = 'class')
 
